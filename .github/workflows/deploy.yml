@@ -1,4 +1,4 @@
-name: Deploy gh-pages
+name: Deploy cos
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install dependencies
-        run: pnpm install
+        run: cd main && pnpm install
 
       - name: Build
         run: pnpm build
@@ -38,11 +38,17 @@ jobs:
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
 
-      - name: Deploy gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: deploy Main app
+        uses: sylingd/tencent-cos-and-cdn-action@latest
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          secret_id: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
+          secret_key: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
+          cos_bucket: ${{ secrets.COS_BUCKET }}
+          cos_region: ${{ secrets.COS_REGION }}
+          cos_accelerate: true
+          local_path: main/dist
+          remote_path: /main
+          clean: false
 
       - name: Setup pnpm cache
         uses: actions/cache@v3
