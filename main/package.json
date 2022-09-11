@@ -8,7 +8,7 @@
     "build": " cross-env NODE_ENV=production webpack",
     "lint": "eslint ./src --ext .js,.ts,.tsx --cache --fix",
     "fix-code": "prettier-eslint --write 'src/**/*.{ts,tsx}'",
-    "prepare": "husky install",
+    "prepare": "husky install || echo -e '\\033[31m husky error \\033[0m'",
     "analyzer": "cross-env NODE_ENV=production ANALYZER=true webpack",
     "webpack:stats": "webpack --config webpack.config.js --profile --json > stats.json"
   },
