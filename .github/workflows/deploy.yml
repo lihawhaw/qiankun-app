@@ -32,12 +32,12 @@ jobs:
         run: cd main && pnpm install
 
       - name: Build
-        run: pnpm build
+        run: cd main && pnpm build
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+      # - name: Get pnpm store directory
+      #   id: pnpm-cache
+      #   run: |
+      #     echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
 
       - name: deploy Main app
         uses: sylingd/tencent-cos-and-cdn-action@v1.0.2
@@ -51,10 +51,10 @@ jobs:
           remote_path: /main
           clean: false
 
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      # - name: Setup pnpm cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+      #     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pnpm-store-
