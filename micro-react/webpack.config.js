@@ -20,8 +20,8 @@ const baseRules = []
 const publicPath = isProd
   ? 'https://qiankun-1256651264.cos-website.ap-shanghai.myqcloud.com/micro-react'
   : '/'
-let chunkFilename = 'main/static/[name].[chunkhash].chunk.js'
-let filename = 'main/static/[name].[contenthash].bundle.js'
+let chunkFilename = 'static/[name].[chunkhash].chunk.js'
+let filename = 'static/[name].[contenthash].bundle.js'
 
 if (startAnalyzer) {
   basePlugin.push(new BundleAnalyzerPlugin())
