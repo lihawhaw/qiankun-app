@@ -48,7 +48,7 @@ jobs:
           cos_region: ${{ secrets.COS_REGION }}
           cos_accelerate: true
           local_path: main/dist
-          remote_path: /main
+          remote_path: /
           clean: false
 
       # - name: Setup pnpm cache
