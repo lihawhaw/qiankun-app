@@ -5,7 +5,7 @@ import loadable from '@loadable/component'
 
 const Home = loadable(() => import('@/pages/home'))
 const About = loadable(() => import('@/pages/about'))
-const NoMatch = loadable(() => import('@/components/no-match'))
+// const NoMatch = loadable(() => import('@/components/no-match'))
 
 export default function AppRouter() {
   return (
@@ -13,7 +13,7 @@ export default function AppRouter() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='about' element={<About />} />
-        <Route path='*' element={<NoMatch />} />
+        {/* <Route path='*' element={<NoMatch />} /> */}
       </Routes>
     </BrowserRouter>
   )
