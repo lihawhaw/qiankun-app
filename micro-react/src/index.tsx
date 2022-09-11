@@ -13,24 +13,25 @@ function render(props: MicroAppProps) {
       ? container.querySelector('#root')
       : document.querySelector('#root'),
   )
-  console.log('micro-react', props)
+  console.log('micro-react', props, root)
   root.render(<AppRouter />)
 }
 
 if (!window.__POWERED_BY_QIANKUN__) {
   render({})
+  console.log('__POWERED_BY_QIANKUN__', window.__POWERED_BY_QIANKUN__)
 }
 
 export async function bootstrap() {
-  console.log('[react16] react app bootstraped')
+  console.log('micro-react bootstrap')
 }
 
 export async function mount(props: MicroAppProps) {
-  console.log('[react16] props from main framework', props)
+  console.log('micro-react mount', props)
   render(props)
 }
 
 export async function unmount(props: MicroAppProps) {
-  const { container } = props
+  console.log('micro-react unmount', props)
   root.unmount()
 }

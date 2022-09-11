@@ -12,8 +12,7 @@ if (rootElement) {
 registerMicroApps([
   {
     name: 'micro-react',
-    entry:
-      'https://qiankun-1256651264.cos-website.ap-shanghai.myqcloud.com/micro-react',
+    entry: 'https://qiankun-1256651264.cos-website.ap-shanghai.myqcloud.com/micro-react/index.html',
     container: '#root',
     activeRule: '/micro-react',
   },

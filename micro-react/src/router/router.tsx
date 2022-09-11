@@ -5,9 +5,9 @@ import loadable from '@loadable/component'
 
 const Home = loadable(() => import('@/pages/home'))
 const About = loadable(() => import('@/pages/about'))
-const NoMatch = loadable(() => import('@/components/no-match'))
 
 export default function AppRouter() {
+  console.log('__POWERED_BY_QIANKUN__', window.__POWERED_BY_QIANKUN__)
   return (
     <BrowserRouter
       basename={window.__POWERED_BY_QIANKUN__ ? '/micro-react' : '/'}
@@ -15,7 +15,7 @@ export default function AppRouter() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='about' element={<About />} />
-        <Route path='*' element={<NoMatch />} />
+        {/* <Route path='*' element={<NoMatch />} /> */}
       </Routes>
     </BrowserRouter>
   )
