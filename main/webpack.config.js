@@ -9,6 +9,10 @@ const BundleAnalyzerPlugin =
 // const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
 // const smp = new SpeedMeasurePlugin()
 // smp.wrap()
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
+const port = 9001
 const isProd = process.env.NODE_ENV === 'production'
 const startAnalyzer = process.env.ANALYZER === 'true'
 const devtool = isProd ? false : 'eval-cheap-module-source-map'
@@ -27,8 +31,22 @@ if (isProd) {
   minimizer.push(
     new ESBuildMinifyPlugin({
       target: 'es2015',
+      css: true,
+      minifyWhitespace: true,
+      minifyIdentifiers: true,
+      minifySyntax: true,
     }),
     // new TerserPlugin({ parallel: true, minify: TerserPlugin.esbuildMinify }),
+    // new CssMinimizerPlugin({
+    //   minimizerOptions: {
+    //     preset: [
+    //       "default",
+    //       {
+    //         discardComments: { removeAll: true },
+    //       },
+    //     ],
+    //   },
+    // }),
   )
   baseRules.push({
     test: /\.tsx?$/,
@@ -41,7 +59,19 @@ if (isProd) {
         // tsconfigRaw: require('./tsconfig.json'),
       },
     },
+  }, {
+    test: /\.less$/i,
+    use: [
+      MiniCssExtractPlugin.loader,
+      "css-loader",
+      "less-loader",
+    ],
   })
+  basePlugin.push(new MiniCssExtractPlugin({
+    filename: "main/static/[name].[contenthash].css",
+    chunkFilename: "main/static/[id].[contenthash].css",
+    ignoreOrder: false,
+  }))
 } else {
   baseRules.push({
     test: /\.tsx?$/,
@@ -57,6 +87,13 @@ if (isProd) {
         },
       },
     },
+  }, {
+      test: /\.less$/i,
+      use: [
+        "style-loader",
+        "css-loader",
+        "less-loader",
+      ],
   })
 
   filename = '[name].js'
@@ -93,6 +130,12 @@ module.exports = {
   module: {
     rules: [...baseRules],
   },
+  performance: {
+    hints: false,
+    assetFilter: function(assetFilename) {
+      return assetFilename.endsWith('.js');
+    }
+  },
   optimization: {
     runtimeChunk: 'single',
     moduleIds: 'deterministic',
@@ -117,6 +160,7 @@ module.exports = {
     },
   },
   devServer: {
+    port,
     historyApiFallback: true,
     // http2: true,
   },
