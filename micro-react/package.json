@@ -1,7 +1,7 @@
 {
-  "name": "template-react",
+  "name": "micro-react",
   "version": "1.0.0",
-  "description": "React 模板",
+  "description": "React",
   "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server",

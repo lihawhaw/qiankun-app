@@ -10,11 +10,11 @@ export default function AppRouter() {
   console.log('__POWERED_BY_QIANKUN__', window.__POWERED_BY_QIANKUN__)
   return (
     <BrowserRouter
-      basename={window.__POWERED_BY_QIANKUN__ ? '/micro-react' : '/'}
+    // basename={window.__POWERED_BY_QIANKUN__ ? '/micro-react' : '/'}
     >
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='about' element={<About />} />
+        <Route path='/micro-react' element={<Home />} />
+        <Route path='/micro-react/about' element={<About />} />
         {/* <Route path='*' element={<NoMatch />} /> */}
       </Routes>
     </BrowserRouter>

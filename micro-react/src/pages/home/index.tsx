@@ -5,7 +5,7 @@ export default function HomePage() {
   return (
     <div>
       Micro React Home Page
-      <Link to='/about'>About</Link>
+      <Link to='about'>About</Link>
     </div>
   )
 }

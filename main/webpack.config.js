@@ -15,9 +15,7 @@ const devtool = isProd ? false : 'eval-cheap-module-source-map'
 const minimizer = []
 const basePlugin = []
 const baseRules = []
-const publicPath = isProd
-  ? 'https://qiankun-1256651264.cos-website.ap-shanghai.myqcloud.com/'
-  : '/'
+const publicPath = isProd ? 'https://qiankun.lihaha.cn/' : '/'
 let chunkFilename = 'main/static/[name].[chunkhash].chunk.js'
 let filename = 'main/static/[name].[contenthash].bundle.js'
 

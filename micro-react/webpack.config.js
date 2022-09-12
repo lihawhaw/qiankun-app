@@ -17,9 +17,7 @@ const port = 9002
 const minimizer = []
 const basePlugin = []
 const baseRules = []
-const publicPath = isProd
-  ? 'https://qiankun-1256651264.cos-website.ap-shanghai.myqcloud.com/micro-react'
-  : '/'
+const publicPath = isProd ? 'https://qiankun.lihaha.cn/micro-react' : '/'
 let chunkFilename = 'static/[name].[chunkhash].chunk.js'
 let filename = 'static/[name].[contenthash].bundle.js'
 
@@ -95,7 +93,7 @@ module.exports = {
   plugins: [
     ...basePlugin,
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: './public/index.html',
     }),
   ],
   module: {

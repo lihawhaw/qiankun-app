@@ -6,7 +6,7 @@ export default function AboutPage() {
   return (
     <div>
       Micro React About Page
-      <Link to='/'>micro Home</Link>
+      <Link to='/micro-react'>micro Home</Link>
       <a onClick={() => microPush('/')}>home</a>
     </div>
   )
