@@ -13,13 +13,14 @@ function render(props: MicroAppProps) {
       ? container.querySelector('#root')
       : document.querySelector('#root'),
   )
-  console.log('micro-react', props, root)
+  console.log('micro-react render props>', props, root)
+  console.log('micro-react render document>', document.querySelector('#root'))
   root.render(<AppRouter />)
 }
 
 if (!window.__POWERED_BY_QIANKUN__) {
   render({})
-  console.log('__POWERED_BY_QIANKUN__', window.__POWERED_BY_QIANKUN__)
+  console.log('__POWERED_BY_QIANKUN__')
 }
 
 export async function bootstrap() {
