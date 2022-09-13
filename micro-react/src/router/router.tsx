@@ -12,7 +12,7 @@ export default function AppRouter() {
   console.log('AppRouter', window.__POWERED_BY_QIANKUN__)
   return (
     <BrowserRouter
-    basename={window.__POWERED_BY_QIANKUN__ ? '/micro-react' : '/'}
+    basename={window.__POWERED_BY_QIANKUN__ ? '/micro-react' : ''}
     >
       <Routes>
         <Route path='/' element={<Home />} />

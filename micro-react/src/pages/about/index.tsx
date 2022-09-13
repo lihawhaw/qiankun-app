@@ -1,13 +1,20 @@
 import { microPush } from '@/utils'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import {useMicroNavigate} from '@/hooks/useMicroNavigate'
 
 export default function AboutPage() {
+  const navigate = useMicroNavigate()
+
   return (
     <div>
       Micro React About Page
-      <Link to='/micro-react'>micro Home</Link>
-      <a onClick={() => microPush('/')}>home</a>
+      <div>
+        <Link to='/'>micro Home</Link>
+      </div>
+      <div>
+        <a onClick={() => navigate('/')}>home</a>
+      </div>
     </div>
   )
 }
