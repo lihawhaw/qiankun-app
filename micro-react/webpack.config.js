@@ -19,7 +19,7 @@ const port = 9002
 const minimizer = []
 const basePlugin = []
 const baseRules = []
-const publicPath = isProd ? 'https://qiankun-1256651264.cos-website.ap-shanghai.myqcloud.com/micro-react' : '/'
+const publicPath = isProd ? 'https://qiankun.cdn.lihaha.cn/' : '/'
 let chunkFilename = 'static/[name].[chunkhash].chunk.js'
 let filename = 'static/[name].[contenthash].bundle.js'
 
