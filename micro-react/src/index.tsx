@@ -1,8 +1,8 @@
 import './public-path'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
-import AppRouter from './router/router'
 import { MicroAppProps } from './types/qiankun'
+import { App } from './app'
 
 let root: ReactDOM.Root
 
@@ -15,7 +15,7 @@ function render(props: MicroAppProps) {
   )
   console.log('micro-react render props>', props, root)
   console.log('micro-react render document>', document.querySelector('#root'))
-  root.render(<AppRouter />)
+  root.render(<App />)
 }
 
 if (!window.__POWERED_BY_QIANKUN__) {

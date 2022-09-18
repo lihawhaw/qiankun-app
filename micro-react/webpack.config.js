@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const TerserPlugin = require('terser-webpack-plugin')
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { name } = require('./package')
 // const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
 // const smp = new SpeedMeasurePlugin()
@@ -43,7 +45,21 @@ if (isProd) {
         // tsconfigRaw: require('./tsconfig.json'),
       },
     },
-  })
+  }, {
+        test: /\.less$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "less-loader",
+        ],
+      })
+
+
+  basePlugin.push(new MiniCssExtractPlugin({
+    filename: "static/[name].[contenthash].css",
+    chunkFilename: "static/[id].[contenthash].css",
+    ignoreOrder: false,
+  }))
 } else {
   baseRules.push({
     test: /\.tsx?$/,
@@ -59,10 +75,23 @@ if (isProd) {
         },
       },
     },
+  },{
+    test: /\.less$/i,
+    use: [
+      "style-loader",
+      "css-loader",
+      "less-loader",
+    ],
   })
 
   filename = '[name].js'
   chunkFilename = '[name].chunk.js'
+
+  basePlugin.push(new MiniCssExtractPlugin({
+    filename: "main/static/[name].css",
+    chunkFilename: "main/static/[id].css",
+    ignoreOrder: false,
+  }))
 }
 
 /** @type {import('webpack').Configuration} */
