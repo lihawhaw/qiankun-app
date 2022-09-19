@@ -19,9 +19,9 @@ const devtool = isProd ? false : 'eval-cheap-module-source-map'
 const minimizer = []
 const basePlugin = []
 const baseRules = []
-const publicPath = isProd ? 'https://qiankun.cdn.lihaha.cn/' : '/'
-let chunkFilename = 'main/static/[name].[chunkhash].chunk.js'
-let filename = 'main/static/[name].[contenthash].bundle.js'
+const publicPath = isProd ? 'https://qiankun.cdn.lihaha.cn/main' : '/'
+let chunkFilename = 'static/[name].[chunkhash].chunk.js'
+let filename = 'static/[name].[contenthash].bundle.js'
 
 if (startAnalyzer) {
   basePlugin.push(new BundleAnalyzerPlugin())
@@ -68,8 +68,8 @@ if (isProd) {
     ],
   })
   basePlugin.push(new MiniCssExtractPlugin({
-    filename: "main/static/[name].[contenthash].css",
-    chunkFilename: "main/static/[id].[contenthash].css",
+    filename: "static/[name].[contenthash].css",
+    chunkFilename: "static/[id].[contenthash].css",
     ignoreOrder: false,
   }))
 } else {
