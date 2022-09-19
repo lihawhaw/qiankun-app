@@ -74,6 +74,29 @@ jobs:
           remote_path: /micro-react
           clean: false
 
+      - name: Install dependencies
+        run: cd micro-main && pnpm install
+
+      - name: Build
+        run: cd micro-main && pnpm build
+
+      # - name: Get pnpm store directory
+      #   id: pnpm-cache
+      #   run: |
+      #     echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - name: deploy Micro React app
+        uses: sylingd/tencent-cos-and-cdn-action@v1.0.2
+        with:
+          secret_id: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
+          secret_key: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
+          cos_bucket: ${{ secrets.COS_BUCKET }}
+          cos_region: ${{ secrets.COS_REGION }}
+          cos_accelerate: true
+          local_path: micro-main/dist
+          remote_path: /micro-main
+          clean: false
+
       # - name: Setup pnpm cache
       #   uses: actions/cache@v3
       #   with:
